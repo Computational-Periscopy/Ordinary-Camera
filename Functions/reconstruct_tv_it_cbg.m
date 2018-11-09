@@ -235,9 +235,11 @@ end
 
 
 function [X] = fista_backtrack(grad, proj, Xinit, step, alpha, opts, calc_H, calc_G, constants)  
-
 % function [X, iter, min_cost] = fista_general(grad,proj, Xinit, L, opts, calc_F)   
 % Implementation of relaxed FISTA. 
+% Ma, Yanting, et al. "Accelerated Image Reconstruction for Nonlinear Diffractive Imaging." 
+% arXiv preprint arXiv:1708.01663 (2017).
+%
 % Solve the problem: x = arg min_x f(x) + lambda*h(x) 
 %  Inputs:
 %     grad   : a function calculating gradient of f(X) given X.
