@@ -1,8 +1,8 @@
 # Ordinary-Camera
 Computational Periscopy with an Ordinary Digital Camera
-% Manuscript:
-%   Saunders, C. and Murray-Bruce, J and Goyal, V.K., 'Computational
-%               Periscopy with and Ordinary Digital Camera', Nature, 2018.
+
+Manuscript:
+ Saunders, C. and Murray-Bruce, J and Goyal, V.K., 'Computational Periscopy with and Ordinary Digital Camera', Nature, 2018.
 
 
 For occluder localization:
