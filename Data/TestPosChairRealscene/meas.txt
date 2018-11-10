@@ -1,0 +1,2 @@
+occ from back wall: 41.5cm
+occ form left: 0.498m

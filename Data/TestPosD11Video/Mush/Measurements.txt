@@ -1,0 +1,3 @@
+FOV Height: 2.1cm
+FOV from left:   48.3 cm
+FOv size: 46.8cm

@@ -1,0 +1,10 @@
+FOV top: 46.5cm
+FOv bottom: 6.4cm
+FOV left: 54.3cm
+
+Occluder left: 0.501cm
+Occluder from back wall:  0.434cm
+Occluder height:  24.2 cm
+
+chair bar width:  1.4cm
+Chair bar dist down:  6cm
