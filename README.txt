@@ -1,5 +1,5 @@
 The contents of this folder inlude MATLAB scripts for reproducing results in the manuscript [1] (and its supplementary document).
-[1] 
+[1] Saunders, C. and Murray-Bruce, J and Goyal, V.K., 'Computational Periscopy with and Ordinary Digital Camera', Nature, 2018.
 
 To reproduce reconstructions run the corresponding MATLAB scripts as described below.
 
