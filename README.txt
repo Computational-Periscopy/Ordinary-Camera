@@ -1,7 +1,7 @@
 The contents of this folder inlude MATLAB scripts for reproducing results in the manuscript [1] (and its supplementary document).
 [1] Saunders, C. and Murray-Bruce, J. and Goyal, V.K., 'Computational Periscopy with and Ordinary Digital Camera', Nature, 2018.
 
-To reproduce reconstructions run the corresponding MATLAB scripts as described below.
+To reproduce reconstructions run the corresponding MATLAB scripts as described below. You will need MATLAB version 2017b or above.
 
 Main manuscript results:
 1. For Figure 4 column C, run script 'fig4_column_c.m'
