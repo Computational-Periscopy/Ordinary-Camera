@@ -80,7 +80,7 @@ numPixels = floor(numPixels/(2^downsamp_factor));
 %           * Mushroom scene:       'mushroom'
 %           * Tommy scene:          'tommy'
 
-scene = 'mushroom';
+scene = 'tommy';
 
 switch scene
     case 'mushroom'
@@ -89,10 +89,10 @@ switch scene
         
         tv_reg_param = 1.3*[0.05,0.05,0.05];
         
-        sr = 0.9*125*125/(Ndiscr_mon^2)*prod(subblocksperaxis)*0.9; 
-        sg = 0.98*125*125/(Ndiscr_mon^2)*prod(subblocksperaxis)*0.98; 
-        sb = 1.04*125*125/(Ndiscr_mon^2)*prod(subblocksperaxis)*1.04;
-
+        sr =  0.52*0.75*(125*125/((Ndiscr_mon^2)*prod(subblocksperaxis))); 
+        sg =  0.52*0.83*(125*125/((Ndiscr_mon^2)*prod(subblocksperaxis))); 
+        sb = 0.52*0.89*(125*125/((Ndiscr_mon^2)*prod(subblocksperaxis)));
+        
         crop_coords = [7,7];
         crop_size = [29,36];
     case 'tommy'
@@ -101,9 +101,9 @@ switch scene
         
         tv_reg_param = 1.3*[0.05,0.05,0.05];
         
-        sr = 0.73*125*125/(Ndiscr_mon^2)*prod(subblocksperaxis)*0.9; 
-        sg = 0.87*125*125/(Ndiscr_mon^2)*prod(subblocksperaxis)*0.98; 
-        sb = 1.22*125*125/(Ndiscr_mon^2)*prod(subblocksperaxis)*1.04;
+        sr =  0.545*0.58*125*125/((Ndiscr_mon^2)*prod(subblocksperaxis)); 
+        sg =  0.545*0.72*125*125/((Ndiscr_mon^2)*prod(subblocksperaxis)); 
+        sb =  0.545*1.07*125*125/((Ndiscr_mon^2)*prod(subblocksperaxis));
         
         crop_coords = [7,7];
         crop_size = [29,36];
@@ -114,9 +114,9 @@ switch scene
         
         tv_reg_param = 1.3*[0.05,0.06,0.06];
         
-        sr = 0.75*125*125/(Ndiscr_mon^2)*prod(subblocksperaxis)*0.9; 
-        sg = 1.1*125*125/(Ndiscr_mon^2)*prod(subblocksperaxis)*0.98; 
-        sb = 1.1*125*125/(Ndiscr_mon^2)*prod(subblocksperaxis)*1.04;
+        sr = 0.75*125*125/((Ndiscr_mon^2)*prod(subblocksperaxis))*0.9; 
+        sg = 1.1*125*125/((Ndiscr_mon^2)*prod(subblocksperaxis))*0.98; 
+        sb = 1.1*125*125/((Ndiscr_mon^2)*prod(subblocksperaxis))*1.04;
         
         crop_coords = [7,7];
         crop_size = [29,36];
@@ -127,9 +127,9 @@ switch scene
         
         tv_reg_param = 1.3*[0.065,0.065,0.065];
         
-        sr = 0.8*125*125/(Ndiscr_mon^2)*prod(subblocksperaxis)*0.9; 
-        sg = 0.8*125*125/(Ndiscr_mon^2)*prod(subblocksperaxis)*0.98; 
-        sb = 0.8*125*125/(Ndiscr_mon^2)*prod(subblocksperaxis)*1.04;
+        sr = 0.6*125*125/((Ndiscr_mon^2)*prod(subblocksperaxis))*0.9; 
+        sg = 0.6*125*125/((Ndiscr_mon^2)*prod(subblocksperaxis))*0.98; 
+        sb = 0.6*125*125/((Ndiscr_mon^2)*prod(subblocksperaxis))*1.04;
         
         crop_coords = [7,7];
         crop_size = [29,36];

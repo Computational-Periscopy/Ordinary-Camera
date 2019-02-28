@@ -28,7 +28,7 @@ numPixels = 1008;
 % Parameters
 Ndiscr_mon = 4; %Discretization of each scene patch
 viewAngleCorrection = 1;
-useEstimatedOccPos = true;   %Use estimated occluder position or not
+useEstimatedOccPos = false;   %Use estimated occluder position or not
 downsamp_factor = 3; %Downsampling of measurements 2^downsamp_factor
 
 
@@ -84,11 +84,9 @@ numPixels = floor(numPixels/(2^downsamp_factor));
 count = 1;
 true_corner = Occ_LLcorner;
 
-% Formula for calculating shifts in occluder position
 scale = D/(D-Occ_LLcorner(2));
 px_shiftx = IlluminationBlock_Size(1)/scale;
 px_shifty = IlluminationBlock_Size(2)/scale;
-
 
 %4 pixels in steps of 2
 xpos = [-6*px_shiftx, -4*px_shiftx,-2*px_shiftx, 0,  2*px_shiftx, 4*px_shiftx, 6*px_shiftx]; %Offsets of occluder to use
@@ -103,7 +101,7 @@ pad = round([max(pixel_shift_x), max(pixel_shift_y)]);
 tv_reg_param = 1.3*[0.05,0.05,0.05];
 
 for zoff = 1:length(zpos)
-for xoff = 1:length(xpos) %Loop through postulated occluder positions
+for xoff = 1:length(xpos)
     %%%%%%%%%%%%%
 
     Occ_LLcorner = true_corner + [xpos(xoff), 0, zpos(zoff)];
@@ -121,32 +119,29 @@ for xoff = 1:length(xpos) %Loop through postulated occluder positions
     %%%%%%%%%%%%%%
 
     tic
-    %simulate light transport matrix
     [simA] = simulate_A(wallparam, occ_corner,simuParams, Mon_xdiscr,Mon_zdiscr, 0);
     
-    
-    % Reconstruct test scenes
-    sr = 1.1719e+04/(Ndiscr_mon^2)*prod(subblocksperaxis); 
-    sg = 1.2969e+04/(Ndiscr_mon^2)*prod(subblocksperaxis); 
-    sb = 1.3906e+04/(Ndiscr_mon^2)*prod(subblocksperaxis);
-    
+    sr = 0.485*0.75*(125*125/((Ndiscr_mon^2)*prod(subblocksperaxis))); 
+    sg = 0.485*0.83*(125*125/((Ndiscr_mon^2)*prod(subblocksperaxis))); 
+    sb = 0.485*0.89*(125*125/((Ndiscr_mon^2)*prod(subblocksperaxis)));
+
     final_im1(:,:,:,count) = reconstruct_tv(sr*simA,sg*simA,sb*simA, test_image1,  3.25*tv_reg_param, NumBlocks_sim);
     
-    sr = 9.0625e+03/(Ndiscr_mon^2)*prod(subblocksperaxis); 
-    sg = 11250/(Ndiscr_mon^2)*prod(subblocksperaxis); 
-    sb = 1.6719e+04/(Ndiscr_mon^2)*prod(subblocksperaxis);
+    sr =  0.525*0.58*125*125/((Ndiscr_mon^2)*prod(subblocksperaxis)); 
+    sg =  0.525*0.72*125*125/((Ndiscr_mon^2)*prod(subblocksperaxis)); 
+    sb =  0.525*1.07*125*125/((Ndiscr_mon^2)*prod(subblocksperaxis));
     
     final_im2(:,:,:,count) = reconstruct_tv(sr*simA,sg*simA,sb*simA, test_image2, 3.25*tv_reg_param, NumBlocks_sim);
     
-    sr = 1.1719e+04/(Ndiscr_mon^2)*prod(subblocksperaxis); 
-    sg = 1.1719e+04/(Ndiscr_mon^2)*prod(subblocksperaxis); 
-    sb = 1.1719e+04/(Ndiscr_mon^2)*prod(subblocksperaxis);
+    sr = 0.9*0.75*125*125/((Ndiscr_mon^2)*prod(subblocksperaxis)); 
+    sg = 0.9*0.75*125*125/((Ndiscr_mon^2)*prod(subblocksperaxis)); 
+    sb = 0.9*0.75*125*125/((Ndiscr_mon^2)*prod(subblocksperaxis));
     
     final_im3(:,:,:,count) = reconstruct_tv(sr*simA,sg*simA,sb*simA, test_image3, 3.5*tv_reg_param, NumBlocks_sim);
     
-    sr = 1.0156e+04/(Ndiscr_mon^2)*prod(subblocksperaxis); 
-    sg = 1.3281e+04/(Ndiscr_mon^2)*prod(subblocksperaxis); 
-    sb = 1.4844e+04/(Ndiscr_mon^2)*prod(subblocksperaxis);
+    sr = 0.65*125*125/((Ndiscr_mon^2)*prod(subblocksperaxis)); 
+    sg = 0.85*125*125/((Ndiscr_mon^2)*prod(subblocksperaxis)); 
+    sb = 0.95*125*125/((Ndiscr_mon^2)*prod(subblocksperaxis));
     
     final_im4(:,:,:,count) = reconstruct_tv(sr*simA,sg*simA,sb*simA,test_image4, 3.25*tv_reg_param, NumBlocks_sim);
     
@@ -179,6 +174,9 @@ title('Measurement')
 
 subplot(4,4,3)
 imm1 = cat(3,stack_combine(squeeze(final_im1_t(:,:,1,:))),stack_combine(squeeze(final_im1_t(:,:,2,:))),stack_combine(squeeze(final_im1_t(:,:,3,:))));
+
+crop_coords = [7,6];
+crop_size = [29,36];
 
 imshow(imm1);
 title('Combined reconstruction')
